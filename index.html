@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f7f2">
+    <meta name="description" content="Nexora AI, your college information assistant.">
+    <title>Nexora AI — New chat</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <button class="mobile-scrim" id="mobile-scrim" aria-label="Close navigation" hidden></button>
+      <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#" data-nav="chat" aria-label="Nexora AI home">
+          <span class="brand-mark" aria-hidden="true"><span>N</span><i>+</i></span>
+          <span>Nexora AI</span>
+        </a>
+
+        <button class="new-chat-button" id="new-chat">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+          <span>New chat</span>
+        </button>
+
+        <nav class="primary-nav" aria-label="Workspace">
+          <button class="nav-item is-active" data-nav="chat">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4.75h12a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 16 14.75H9l-4.5 2v-2H4a1.5 1.5 0 0 1-1.5-1.5v-7A1.5 1.5 0 0 1 4 4.75Z"/></svg>
+            <span>Chat</span>
+          </button>
+          <button class="nav-item" data-nav="results">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2.75 6.5 3.5v7.5L10 17.25l-6.5-3.5v-7.5L10 2.75Z"/><path d="m7.5 10 1.7 1.7 3.5-3.8"/></svg>
+            <span>Results</span>
+          </button>
+          <button class="nav-item" data-nav="downloads">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75v9m-3.5-3.5L10 11.75l3.5-3.5M4 13.25v3h12v-3"/></svg>
+            <span>Downloads</span>
+          </button>
+          <button class="nav-item" data-nav="notifications">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8a5 5 0 0 1 10 0c0 5 2 5.5 2 6.5H3C3 13.5 5 13 5 8Zm3.5 9h3"/></svg>
+            <span>Notifications</span>
+            <span class="notification-dot" id="notification-dot" hidden></span>
+          </button>
+        </nav>
+
+        <section class="recent-section" aria-labelledby="recent-title">
+          <div class="section-label" id="recent-title">Recents</div>
+          <div class="recent-list" id="recent-list"></div>
+          <p class="recent-empty" id="recent-empty">Your conversations will appear here.</p>
+        </section>
+
+        <button class="profile-button" id="profile-button" aria-expanded="false">
+          <span class="avatar">PS</span>
+          <span class="profile-copy"><strong>Priya Sharma</strong><small>Student account</small></span>
+          <svg class="profile-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>
+        </button>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="icon-button menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+            </button>
+            <div class="page-title" id="page-title">New chat</div>
+          </div>
+          <div class="topbar-actions">
+            <span class="knowledge-badge"><span class="badge-dot"></span>Powered by BVC Knowledge</span>
+            <button class="icon-button top-notifications" id="top-notifications" aria-label="Open notifications">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8a5 5 0 0 1 10 0c0 5 2 5.5 2 6.5H3C3 13.5 5 13 5 8Zm3.5 9h3"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section class="chat-page" id="chat-page" aria-label="Chat">
+            <div class="welcome-view" id="welcome-view">
+              <div class="hero-mark brand-mark" aria-hidden="true"><span>N</span><i>+</i></div>
+              <h1>How can I help you today?</h1>
+              <p class="hero-subtitle">Ask anything about courses, regulations, syllabus, placements, faculty, and college life.</p>
+
+              <form class="composer" id="chat-form">
+                <input type="file" id="attachment-input" multiple hidden accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg">
+                <button class="attach-button" type="button" id="attach-button" aria-label="Attach files">
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 10.5 5.7-5.7a2.12 2.12 0 0 1 3 3l-7.1 7.1a4 4 0 0 1-5.7-5.7l7.1-7.1"/></svg>
+                </button>
+                <textarea id="message-input" rows="1" placeholder="Ask Nexora anything about BVC..." aria-label="Your message"></textarea>
+                <button class="send-button" type="submit" aria-label="Send message">
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4m-5 5 5-5 5 5"/></svg>
+                </button>
+              </form>
+              <div class="attachment-list" id="attachment-list" aria-live="polite"></div>
+
+              <div class="suggestion-grid" id="suggestion-grid">
+                <button class="suggestion-card" data-prompt="What are the academic regulations for B.Tech students, including attendance criteria and autonomous syllabus rules?">
+                  <span class="suggestion-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2.5 6 3.2v4.7c0 3.3-2.5 5.8-6 7.1-3.5-1.3-6-3.8-6-7.1V5.7L10 2.5Z"/><path d="m7.5 10 1.7 1.7 3.3-3.5"/></svg></span>
+                  <span class="suggestion-title">Academic Regulations</span>
+                  <span class="suggestion-description">JNTUK / Autonomous syllabus &amp; attendance criteria</span>
+                </button>
+                <button class="suggestion-card" data-prompt="What placement and training information is available, including recent drives, recruiters, and eligibility criteria?">
+                  <span class="suggestion-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 5h13v10h-13zM7 5V3.5h6V5m-9.5 4h13m-8 0v2h3v-2"/></svg></span>
+                  <span class="suggestion-title">Placement &amp; Training</span>
+                  <span class="suggestion-description">Recent drives, top recruiters &amp; eligibility criteria</span>
+                </button>
+                <button class="suggestion-card" data-prompt="Where can I find the latest syllabus, study materials, and previous question papers for my course?">
+                  <span class="suggestion-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.75h7l4 4v10.5H5z"/><path d="M12 2.75v4h4m-7 3.5h3m-3 3h5"/></svg></span>
+                  <span class="suggestion-title">Syllabus &amp; Materials</span>
+                  <span class="suggestion-description">Previous question papers and department notes</span>
+                </button>
+                <button class="suggestion-card" data-prompt="Can you help me find college-life information such as bus routes, library timings, events, and contacts?">
+                  <span class="suggestion-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8a5 5 0 0 1 10 0c0 5 2 5.5 2 6.5H3C3 13.5 5 13 5 8Zm3.5 9h3"/></svg></span>
+                  <span class="suggestion-title">College Life &amp; Timetable</span>
+                  <span class="suggestion-description">Bus routes, library timings, events &amp; contacts</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="conversation-view" id="conversation-view" hidden>
+              <div class="message-list" id="message-list" aria-live="polite"></div>
+              <div class="chat-bottom">
+                <div class="attachment-list" id="conversation-attachment-list" aria-live="polite"></div>
+                <form class="composer" id="conversation-form">
+                  <button class="attach-button" type="button" data-attach aria-label="Attach files">
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 10.5 5.7-5.7a2.12 2.12 0 0 1 3 3l-7.1 7.1a4 4 0 0 1-5.7-5.7l7.1-7.1"/></svg>
+                  </button>
+                  <textarea id="conversation-input" rows="1" placeholder="Write a message..." aria-label="Your message"></textarea>
+                  <button class="send-button" type="submit" aria-label="Send message">
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4m-5 5 5-5 5 5"/></svg>
+                  </button>
+                </form>
+                <p class="privacy-note">AI responses may be inaccurate. Verify important college information with an official source.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="utility-page" id="utility-page" hidden aria-live="polite"></section>
+        </div>
+      </main>
+
+      <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </body>
+</html>
